@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Скрипт исправления ошибки, связанной с долгой загрузкой после обновления при установленном Зрам
+#
+# Отключаем Зрам
+echo "Отключение Zram"
+systemctl disable zram.service
+systemctl stop zram.service
+#
+echo "Обновление grub и initrd"
+update-grub2 
+dracut -f /boot/initrd-$(uname -r).img
+#
+urpmi --auto-update
+#
+echo "Установка Zram"
+urpmi --force zramstart
+systemctl enable zram.service
+systemctl start zram.service
+#
+echo "Готово! Конец операции!"
+exit
