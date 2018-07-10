@@ -13,8 +13,7 @@ dracut -f /boot/initrd-$(uname -r).img
 #
 urpmi --auto-update
 #
-echo "Установка Zram"
-urpmi --force zramstart
+echo "Включение Zram"
 systemctl enable zram.service
 systemctl start zram.service
 #
