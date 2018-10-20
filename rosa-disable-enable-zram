@@ -4,7 +4,6 @@
 #
 # Отключаем Зрам
 echo "Отключение Zram"
-systemctl disable zram.service
 systemctl stop zram.service
 #
 echo "Обновление grub и initrd"
@@ -14,7 +13,6 @@ dracut -f /boot/initrd-$(uname -r).img
 urpmi --auto-update
 #
 echo "Включение Zram"
-systemctl enable zram.service
 systemctl start zram.service
 #
 echo "Готово! Конец операции!"
