@@ -3,7 +3,7 @@
 # Скрипт исправляет ошибку долгой загрузки системы(timeout) после обновления Grub2, при установленном Zram.
 #
 # Отключаем Зрам
-echo "Отключение Zram"
+echo "Остановка Zram"
 systemctl stop zram.service
 #
 echo "Обновление grub и initrd"
@@ -12,7 +12,7 @@ dracut -f /boot/initrd-$(uname -r).img
 #
 urpmi --auto-update
 #
-echo "Включение Zram"
+echo "Запуск Zram"
 systemctl start zram.service
 #
 echo "Готово! Конец операции!"
